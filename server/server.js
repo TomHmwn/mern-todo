@@ -3,11 +3,13 @@ dotenv.config();
 const express = require('express');
 const errorHandler = require('./middleware/errorHandler');
 const connectDb = require('./config/dbConnection');
+const cors = require('cors');
 
 connectDb();
 const app = express();
 const port =  process.env.PORT ||8888;
 
+app.use(cors());
 app.use(express.json());
 app.use("/api/goals", require("./routes/goalRoutes"));
 app.use("/api/users", require("./routes/userRoutes"));
